@@ -1,0 +1,93 @@
+"""
+- The first kind of cipher you are going to build is called a Caesar cipher. Specifically, 
+you will take each letter in your message, find its position in the alphabet, 
+take the letter located after 3 positions in the alphabet, and replace the original letter with the new letter.
+
+- method used : .find()
+              : .lower()
+              : .index()
+              : .isalpha()
+
+- .find() returns the index of the matching character inside the string. 
+If the character is not found, it returns -1. As you can see, the first character in text, uppercase 'H', is not found, since alphabet contains only lowercase letters.
+
+- .lower() transform a string into its lowercase equivalent.
+
+- .index() method is identical to the .find() method but it throws a ValueError exception if it is unable to find the substring.
+
+A ValueError is a built-in exception that is raised when an argument with the right type but inappropriate value is passed to a function.
+
+- .isalpha() method returns True if all of the characters of the string on which it is called are letters. For example, the code below returns True:
+
+Example Code
+'freeCodeCamp'.isalpha()
+# True
+
+- Note : a condition only run when True and stop when Flase
+
+===Analogie : une Horloge===
+Le modulo fonctionne exactement comme une horloge !
+
+Sur une horloge, après 12h, on retombe sur 1h.
+
+Si il est 10h et que vous ajoutez 4 heures, vous obtenez 2h (et non 14h).
+
+C'est un modulo 12 : (10 + 4) % 12 = 2.
+
+Votre alphabet est une "horloge" avec 26 "heures" (de 0 à 25). Le modulo % 26 garantit que peu importe le nombre obtenu, 
+on retombera toujours sur un index valide de l'horloge alphabétique.
+
+Functions can be called with default arguments. A default argument indicates the value that the function should take if the argument is not passed. 
+For example, the function below accepts three arguments but you can call it passing two arguments. The third one will assume the specified value by default:
+
+Example Code
+def foo(a, b, c=value):
+    <code>
+
+- The newline character \n is a special sequence used to represent a new line. 
+You can write a backslash \ followed by an n as a normal sequence of characters in a string and it will be replaced by a new line in the output when the program runs.
+
+
+
+
+
+
+"""
+
+text = 'mrttaqrhknsw ih puggrur'
+custom_key = 'happycoding'
+
+def vigenere(message, key, direction=1):
+    key_index = 0
+    alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    final_message = ''
+
+    for char in message.lower():
+
+        # Append any non-letter character to the message
+        if not char.isalpha():
+            final_message += char
+        else:        
+            # Find the right key character to encode/decode
+            key_char = key[key_index % len(key)]
+            key_index += 1
+
+            # Define the offset and the encrypted/decrypted letter
+            offset = alphabet.index(key_char)
+            index = alphabet.find(char)
+            new_index = (index + offset*direction) % len(alphabet)
+            final_message += alphabet[new_index]
+    
+    return final_message
+
+def encrypt(message, key):
+    return vigenere(message, key)
+    
+def decrypt(message, key):
+    return vigenere(message, key, -1)
+
+print(f'\nEncrypted text: {text}')
+print(f'Key: {custom_key}')
+decryption = decrypt(text, custom_key)
+print(f'\nDecrypted text: {decryption}\n')
+
