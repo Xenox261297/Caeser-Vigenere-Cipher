@@ -54,8 +54,8 @@ You can write a backslash \ followed by an n as a normal sequence of characters 
 
 """
 
-text = 'mrttaqrhknsw ih puggrur'
-custom_key = 'happycoding'
+text = 've nwom csqroy mdb suyelpci'
+custom_key = 'kalilinux'
 
 def vigenere(message, key, direction=1):
     key_index = 0
@@ -90,4 +90,9 @@ print(f'\nEncrypted text: {text}')
 print(f'Key: {custom_key}')
 decryption = decrypt(text, custom_key)
 print(f'\nDecrypted text: {decryption}\n')
+
+# print(f'\nDecrypted text: {text}')
+# print(f'Key: {custom_key}')
+# Encryption = encrypt(text, custom_key)
+# print(f'\nEncrypted text: {Encryption}\n')
 
